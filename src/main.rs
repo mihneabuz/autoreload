@@ -1,6 +1,7 @@
-use std::env;
+use std::{env, time::Duration};
 use std::path::Path;
 use std::process::Command;
+use std::thread::sleep;
 
 use notify::{RecursiveMode, Result, Watcher, Event};
 
@@ -35,5 +36,7 @@ fn main() -> Result<()> {
     println!("Watching {}...", path);
     watcher.watch(Path::new(path), RecursiveMode::Recursive)?;
 
-    loop {}
+    loop {
+        sleep(Duration::from_secs(1));
+    }
 }
